@@ -1,0 +1,17 @@
+<div class="todo-container">
+    <h2>Your Todo List</h2>
+    <ul>
+        <li *ngFor="let todo of todos">
+            <input type="checkbox" [(ngModel)]="todo.completed" (change)="toggleCompleted(todo)">
+            <span [style.textDecoration]="todo.completed ? 'line-through' : 'none'">{{todo.title}}</span>
+            <div>
+                <button (click)="editTodo(todo)">Edit</button>
+                <button (click)="deleteTodo(todo)">Delete</button>
+            </div>
+            <input *ngIf="todo.editing" type="text" [(ngModel)]="todo.newTitle" (keyup.enter)="saveEditedTodo(todo)" (blur)="cancelEdit(todo)">
+        </li>
+    </ul>
+    <br>
+    <input type="text" [(ngModel)]="newTodoTitle" placeholder="Add new todo">
+    <button (click)="addTodo()">Add</button>
+</div>
