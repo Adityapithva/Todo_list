@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Todo } from '../todo';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Component({
@@ -6,43 +6,35 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent  implements OnInit {
+export class TodoListComponent{
   todos: Todo[] = [];
   newTodoTitle: string = '';
-  constructor(private firestore : AngularFirestore) {}
-  ngOnInit(){
-    this.firestore.collection('todos').valueChanges().subscribe(data => {
-      this.todos = data as Todo[];
-    })
-  }
   addTodo() {
-    if(this.newTodoTitle.trim() != ''){
-      const newTodo :Todo ={
-        id:this.firestore.createId(),
-        title: this.newTodoTitle.trim(),
-        completed: false,
-        editing: false 
-      };
-      this.firestore.collection('todos').add(newTodo);
+    if (this.newTodoTitle.trim() !== '') {
+      this.todos.push({
+        id: this.todos.length + 1,
+        title: this.newTodoTitle,
+        completed: false
+      });
       this.newTodoTitle = '';
     }
   }
 
   toggleCompleted(todo: Todo) {
     todo.completed = !todo.completed;
-    this.firestore.collection('todos').doc(todo.id).update({ completed: todo.completed });
   }
 
   editTodo(todo: Todo) {
-    todo.editing = true;
-    todo.newTitle = todo.title;
+    if (todo.newTitle !== undefined && todo.newTitle.trim() !== '') {
+      todo.title = todo.newTitle;
+      todo.editing = false;
+    }
   }
 
   saveEditedTodo(todo: Todo) {
     if (todo.newTitle !== undefined && todo.newTitle.trim() !== '') {
       todo.title = todo.newTitle;
       todo.editing = false;
-      this.firestore.collection('todos').doc(todo.id).update({ title: todo.title });
     }
   }
   
@@ -52,6 +44,5 @@ export class TodoListComponent  implements OnInit {
   }
   deleteTodo(todo:Todo){
     this.todos = this.todos.filter(item => item !== todo);
-    this.firestore.collection('todos').doc(todo.id).delete();
   }
 }

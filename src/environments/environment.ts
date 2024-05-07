@@ -1,13 +1,12 @@
 export const environment = {
     production:false,
     fb:{
-        apiKey: "AIzaSyBv3EUHKR5nhBYUKwNEcuSwO1UUKXNoQbc",
-        authDomain: "to-do-list-97920.firebaseapp.com",
-        databaseURL: "https://to-do-list-97920-default-rtdb.firebaseio.com",
-        projectId: "to-do-list-97920",
-        storageBucket: "to-do-list-97920.appspot.com",
-        messagingSenderId: "222364654687",
-        appId: "1:222364654687:web:44b864dee6b3475da00fea",
-        measurementId: "G-4EV2FPG8Q9"
+        apiKey: "AIzaSyDd7NYMXV40xWq4fc1TVs6rsGOcrcztWMg",
+        authDomain: "todo-list-5b1b1.firebaseapp.com",
+        projectId: "todo-list-5b1b1",
+        storageBucket: "todo-list-5b1b1.appspot.com",
+        messagingSenderId: "1074752767009",
+        appId: "1:1074752767009:web:5324ebbfb254aaa7608f60",
+        measurementId: "G-D12X3S7D8B"
     }
 };
