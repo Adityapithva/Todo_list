@@ -8,7 +8,6 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .todo-container {
     width: 100%;
     height: fit-contents;
@@ -20,18 +19,15 @@ body {
     margin: 5px;
     padding: 5px;
 }
-
 h2 {
     margin-top: 0;
     color: #343a40;
     text-align: center;
 }
-
 ul {
     list-style-type: none;
     padding: 0;
 }
-
 li {
     display: flex;
     align-items: center;
@@ -41,28 +37,23 @@ li {
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-
 li:hover {
     background-color: #f1f1f1;
 }
-
 input[type="checkbox"] {
     margin-right: 10px;
     cursor: pointer;
 }
-
 .todo-actions {
     display: flex;
     align-items: center;
 }
-
 input[type="text"] {
     flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 button {
     margin-left: 5px;
     padding: 8px 16px;
@@ -73,11 +64,9 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
 button:hover {
     background-color: #0056b3;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;

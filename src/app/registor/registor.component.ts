@@ -18,7 +18,7 @@ export class RegistorComponent {
       alert("Please enter password");
       return;
     }
-    this.auth.registor(this.email,this.password);
+    this.auth.register(this.email,this.password);
     this.email = '';
     this.password = '';
   }

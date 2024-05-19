@@ -1,21 +1,29 @@
 import { Component } from '@angular/core';
 import { Todo } from '../todo';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import {addDoc,collection,Firestore} from '@angular/fire/firestore';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent{
+  constructor(private fs : Firestore){}
   todos: Todo[] = [];
   newTodoTitle: string = '';
-  addTodo() {
+  async addTodo() {
     if (this.newTodoTitle.trim() !== '') {
-      this.todos.push({
-        id: this.todos.length + 1,
+      const newTodo = {
         title: this.newTodoTitle,
         completed: false
-      });
+      };
+
+      // Add data to Firestore using addDoc()
+      const docRef = await addDoc(collection(this.fs, 'todos'), newTodo);
+
+      // (Optional) Update local array for immediate UI update
+      this.todos.push({ ...newTodo, id: docRef.id }); // Spread operator (...) for immutability
+
       this.newTodoTitle = '';
     }
   }
